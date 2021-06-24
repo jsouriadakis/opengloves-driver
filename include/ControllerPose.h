@@ -8,6 +8,13 @@ public:
 							   std::string thisDeviceManufacturer,
 							   VRPoseConfiguration_t poseConfiguration);
 	vr::DriverPose_t UpdatePose();
+
+	void StartCalibration();
+
+	void FinishCalibration();
+
+	void CancelCalibration();
+
 private:
 	//We may not initially know what the id of the device that we want to shadow is. This method finds devices that have a specific type specified and that are not this one
 	void DiscoverController();
@@ -19,7 +26,11 @@ private:
 	vr::ETrackedControllerRole m_shadowDeviceOfRole = vr::TrackedControllerRole_Invalid;
 
 	std::string m_thisDeviceManufacturer;
-
+	
 	bool IsOtherRole(int32_t test);
+
+	//calibration
+	vr::DriverPose_t m_maintainPose;
+    bool m_isCalibrating;
 
 };
